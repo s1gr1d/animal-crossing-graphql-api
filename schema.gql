@@ -1,0 +1,24 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type VillagerModel {
+  name: String
+  image: String
+  house: String
+  species: String
+  gender: String
+  personality: String
+  hobby: String
+  birthdayString: String
+  catchphrase: String
+  favSong: String
+  style: [String!]
+  color: [String!]
+  wallpaper: String
+  flooring: String
+}
+
+type Query {
+  allVillagers: [VillagerModel!]!
+}
