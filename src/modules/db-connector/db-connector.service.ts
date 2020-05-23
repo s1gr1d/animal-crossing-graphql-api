@@ -1,13 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { SheetName } from '../../types/spreadsheet';
+import { spreadsheetToObjectArray } from '../../util/modifyData';
+import { SpreadsheetResponse } from '../../types/spreadsheet';
+import { Villager } from '../../types/categories/villager';
 
 @Injectable()
-export class MediaWikiConnector {
-  constructor() {}
+export class DbConnectorService {
+  private readonly spreadsheetId: string;
+  private readonly API_KEY: string; // Google API Key
 
-  // Returns all details about the specified Subreddit
-  public async villager(name: string): Promise<any> {
-    return await axios.get(`http://acnhapi.com/villagers/${name}`);
-    //return http://acnhapi.com/villagers/{villagerID};
+  constructor() {
+    this.spreadsheetId = '13d_LAJPlxMa_DubPTuirkIV4DERBMXbrWQsmSh8ReK4';
+    this.API_KEY = process.env.API_KEY ? process.env.API_KEY : '';
+  }
+
+  private async getData(sheetName: SheetName, area: string) {
+    const params = {
+      key: this.API_KEY,
+      majorDimension: 'ROWS',
+      valueRenderOption: 'FORMULA',
+    };
+
+    const response = await axios.get<SpreadsheetResponse>(
+      `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values/${sheetName}!${area}`,
+      { params: params },
+    );
+
+    const spreadsheetValues = response.data.values;
+
+    return spreadsheetToObjectArray(spreadsheetValues);
+  }
+
+  public async getVillagers(): Promise<Villager[]> {
+    return await this.getData(SheetName.VILLAGERS, 'A1:S392');
   }
 }

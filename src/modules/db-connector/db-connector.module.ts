@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { MediaWikiConnector } from './media-wiki-connector.service';
+import { DbConnectorService } from './db-connector.service';
 
 @Module({
-  providers: [MediaWikiConnector],
-  exports: [MediaWikiConnector],
+  providers: [DbConnectorService],
+  exports: [DbConnectorService],
 })
-export class MediaWikiConnectorModule {}
+export class DbConnectorModule {}
