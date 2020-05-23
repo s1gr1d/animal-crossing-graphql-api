@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { VillagersResolver } from './villagers.resolver';
-import { MediaWikiConnectorModule } from '../media-wiki-connector/media-wiki-connector.module';
+import { DbConnectorModule } from '../db-connector/db-connector.module';
+import { VillagersService } from './villagers.service';
 
 @Module({
-  imports: [
-    MediaWikiConnectorModule
-  ],
-  providers: [VillagersResolver],
+  imports: [DbConnectorModule],
+  providers: [VillagersResolver, VillagersService],
 })
 export class VillagersModule {}

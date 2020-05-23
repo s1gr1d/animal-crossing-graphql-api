@@ -1,16 +1,20 @@
-import { Field } from '@nestjs/graphql';
+type MalePersonality = 'Lazy' | 'Jock' | 'Cranky' | 'Smug';
+type FemalePersonality = 'Normal' | 'Peppy' | 'Snooty' | 'Big Sister';
+export type Personality = FemalePersonality & MalePersonality;
+
+export type Gender = 'Female' | 'Male';
 
 export type Villager = {
   name?: string;
   iconimage?: string;
   houseimage?: string;
   species?: string;
-  gender?: string;
-  personality?: string;
+  gender?: Gender;
+  personality?: Personality;
   hobby?: string;
   birthday?: string;
-  catchprase?: string;
-  favourite_song?: string;
+  catchphrase?: string;
+  favoritesong?: string;
   style1?: string;
   style2?: string;
   color1?: string;
