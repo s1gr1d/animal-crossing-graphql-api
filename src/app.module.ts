@@ -1,8 +1,19 @@
 import { Module } from '@nestjs/common';
-import { MediaWikiConnectorModule } from './modules/media-wiki-connector/media-wiki-connector.module';
+import { DbConnectorModule } from './modules/db-connector/db-connector.module';
+import { Request } from 'express';
 import { VillagersModule } from './modules/villagers/villagers.module';
+import { GraphQLModule } from '@nestjs/graphql';
 
 @Module({
-  imports: [MediaWikiConnectorModule, VillagersModule],
+  imports: [
+    GraphQLModule.forRoot({
+      debug: false,
+      playground: true,
+      autoSchemaFile: 'schema.gql',
+      context: ({ req }: { req: Request }) => ({ req }),
+    }),
+    VillagersModule,
+    DbConnectorModule,
+  ],
 })
 export class AppModule {}

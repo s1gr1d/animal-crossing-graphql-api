@@ -1,5 +1,5 @@
 {
-  "name": "naimal-crossing-graph-ql-api",
+  "name": "animal-crossing-graphql-api",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -23,7 +23,13 @@
   "dependencies": {
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
+    "@nestjs/graphql": "^7.3.9",
     "@nestjs/platform-express": "^7.0.0",
+    "apollo-server-express": "^2.13.1",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.0.0",
+    "graphql-tools": "^6.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4"
