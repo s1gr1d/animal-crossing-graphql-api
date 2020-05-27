@@ -11,6 +11,8 @@ I am using the [gitmoji](https://gitmoji.carloscuesta.me/) emoji guide for commi
 
 ## ⚙ Running the app
 
+Playground with Docs is available at http://localhost:8080/graphql
+
 ```bash
 # development
 $ npm run start
@@ -25,15 +27,13 @@ $ npm run start:prod
 ## 🗺 Roadmap
 
 - [x] Villagers
-
 - [ ] Critterpedia
-
+  - [ ] Insects ***(in Progress)***
+  - [ ] Fish
+  - [ ] Fossils
 - [ ] Art
-
 - [ ] ...other categories
-
 - [ ] Let others access the data without having to authenticate
 
   - [ ] set up own database
-
 - [ ] **🚀 Deploy**

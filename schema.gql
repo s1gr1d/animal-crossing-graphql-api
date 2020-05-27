@@ -19,6 +19,47 @@ type VillagerModel {
   flooring: String
 }
 
+type MonthsModel {
+  jan: String
+  feb: String
+  mar: String
+  apr: String
+  may: String
+  jun: String
+  jul: String
+  aug: String
+  sep: String
+  oct: String
+  nov: String
+  dec: String
+}
+
+type HemisphereAvailabilityModel {
+  north: MonthsModel
+  south: MonthsModel
+}
+
+type InsectModel {
+  entryId: Float
+  name: String
+  iconImage: String
+  critterpediaImage: String
+  furnitureImage: String
+  size: String
+  sellingPrice: Float
+  catchingLocation: String
+  weather: String
+  totalCatchesToUnlock: Float
+  spawnRates: String
+  availability: HemisphereAvailabilityModel
+  color: [String!]
+}
+
+type CritterpediaModel {
+  allInsects: [InsectModel!]
+}
+
 type Query {
   allVillagers: [VillagerModel!]!
+  critterpedia: CritterpediaModel!
 }
