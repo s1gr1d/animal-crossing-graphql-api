@@ -4,6 +4,7 @@ import { SheetName } from '../../types/spreadsheet';
 import { spreadsheetToObjectArray } from '../../util/modifyData';
 import { SpreadsheetResponse } from '../../types/spreadsheet';
 import { Villager } from '../../types/categories/villager';
+import { Insect } from '../../types/categories/insect';
 
 @Injectable()
 export class DbConnectorService {
@@ -15,7 +16,7 @@ export class DbConnectorService {
     this.API_KEY = process.env.API_KEY ? process.env.API_KEY : '';
   }
 
-  private async getData(sheetName: SheetName, area: string) {
+  private async getSpreadsheetData(sheetName: SheetName, area: string) {
     const params = {
       key: this.API_KEY,
       majorDimension: 'ROWS',
@@ -24,15 +25,19 @@ export class DbConnectorService {
 
     const response = await axios.get<SpreadsheetResponse>(
       `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values/${sheetName}!${area}`,
-      { params: params },
+      { params },
     );
 
     const spreadsheetValues = response.data.values;
-
+    console.log(spreadsheetValues);
     return spreadsheetToObjectArray(spreadsheetValues);
   }
 
   public async getVillagers(): Promise<Villager[]> {
-    return await this.getData(SheetName.VILLAGERS, 'A1:S392');
+    return await this.getSpreadsheetData(SheetName.VILLAGERS, 'A1:S392');
+  }
+
+  public async getInsects(): Promise<Insect[]> {
+    return await this.getSpreadsheetData(SheetName.INSECTS, 'A1:AP81');
   }
 }

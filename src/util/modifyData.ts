@@ -1,20 +1,32 @@
-import { SpreadsheetObj } from '../types/spreadsheet';
+import { SpreadsheetObj, SpreadsheetText } from '../types/spreadsheet';
+
+const formatKey = (key: SpreadsheetText) =>
+  key
+    .toString()
+    .toLowerCase()
+    .split(' ')
+    .join('')
+    .split('/')
+    .join('')
+    .replace('#', 'id');
+
+const formatValue = (value: SpreadsheetText) =>
+  typeof value === 'string'
+    ? value.includes('=IMAGE(')
+      ? parseImgUrlFromFormula(value)
+      : value
+    : value;
 
 /**
  * convert spreadsheet data into an object
  * KEYS: taken from the first row of the sheet -> reformatted to not include spaces
  * VALUES: if image formula is included, the URL is parsed from it
  */
-const arraysToObject = (keys: string[], values: string[]) =>
+const arraysToObject = (keys: SpreadsheetText[], values: SpreadsheetText[]) =>
   keys.reduce(
     (obj: object, key, idx) => ({
       ...obj,
-      [key
-        .toLowerCase()
-        .split(' ')
-        .join('')]: values[idx].includes('=IMAGE(')
-        ? parseImgUrlFromFormula(values[idx])
-        : values[idx],
+      [formatKey(key)]: formatValue(values[idx]),
     }),
     {},
   );
@@ -24,13 +36,13 @@ const arraysToObject = (keys: string[], values: string[]) =>
  * the first item of the array is sliced because this contains the header data
  */
 export const spreadsheetToObjectArray = (
-  spreadsheetValues: string[][],
+  spreadsheetValues: SpreadsheetText[][],
 ): SpreadsheetObj[] => {
   const spreadsheetHeader = spreadsheetValues[0];
 
   return spreadsheetValues
     .reduce(
-      (array: SpreadsheetObj[], row: string[]) => [
+      (array: SpreadsheetObj[], row: SpreadsheetText[]) => [
         ...array,
         arraysToObject(spreadsheetHeader, row),
       ],

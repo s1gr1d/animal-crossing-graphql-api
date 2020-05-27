@@ -1,11 +1,13 @@
+export type SpreadsheetText = string | number;
+
 export type SpreadsheetResponse = {
   range: string;
   majorDimension?: string;
-  values: string[][];
+  values: SpreadsheetText[][];
 };
 
 export type SpreadsheetObj = {
-  [key: string]: string;
+  [key: string]: string | number;
 };
 
 export enum SheetName {
