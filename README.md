@@ -1,4 +1,3 @@
-
 ##  🐸 Description 
 
 :construction: THIS REPOSITORY IS STILL A WORK IN PROGRESS :construction:
@@ -11,7 +10,7 @@ I am using the [gitmoji](https://gitmoji.carloscuesta.me/) emoji guide for commi
 
 ## ⚙ Running the app
 
-Playground with Docs is available at http://localhost:8080/graphql
+Playground with Docs is available at https://animal-crossing-graphql-api.herokuapp.com/graphql or local at http://localhost:8080/graphql
 
 ```bash
 # development
@@ -36,4 +35,4 @@ $ npm run start:prod
 - [ ] Let others access the data without having to authenticate
 
   - [ ] set up own database
-- [ ] **🚀 Deploy**
+- [x] **🚀 Deploy with Heroku**
