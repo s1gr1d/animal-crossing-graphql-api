@@ -2,9 +2,9 @@
   "name": "animal-crossing-graphql-api",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Sigrid Huemer",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -56,6 +56,9 @@
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.4"
+  },
+  "engines": {
+    "node": "12.16.3"
   },
   "jest": {
     "moduleFileExtensions": [
