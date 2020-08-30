@@ -9,6 +9,7 @@ import { CritterpediaModule } from './modules/critterpedia/critterpedia.module';
   imports: [
     GraphQLModule.forRoot({
       debug: false,
+      introspection: true,
       playground: true,
       autoSchemaFile: 'schema.gql',
       context: ({ req }: { req: Request }) => ({ req }),
